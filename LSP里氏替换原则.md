@@ -15,7 +15,7 @@
    //手枪
    class Handgun :public AbstractGun{
       public:
-      void Shoot(){
+      virtual void Shoot(){
         print("the Handgun shoot");
       }
    }
@@ -23,7 +23,7 @@
    //步枪
    class Rifle :public AbstractGun{
       public:
-      void Shoot(){
+      virtual void Shoot(){
         print("the Rifle shoot");
       }
    }
@@ -31,7 +31,7 @@
    //机枪
    class MachineGun :public AbstractGun{
       public:
-      void Shoot(){
+      virtual void Shoot(){
         print("the MachineGun shoot")
       }
    }
@@ -64,7 +64,7 @@
    //机枪
    class ToyGun :public AbstractGun{
       public:
-      void Shoot(){
+      virtual void Shoot(){
         print("the ToyGun canot shoot")
       }
    }
@@ -90,7 +90,7 @@
          print("open zoomout")
       }
       
-      void Shoot(){
+      virtual void Shoot(){
         print("the AUG shoot")
       }
    }
@@ -135,7 +135,7 @@
    
    class Son : public Father {
        public:
-       void DoSomething(Map map){
+       virtual void DoSomething(Map map){
          print("in Son class");
        };
    }
