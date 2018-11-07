@@ -123,4 +123,46 @@
    ```
    在Rifle类中是没有ZoomOut函数的，程序不能正常的运行。子类是对基类的属性或者方法的扩展和补充，因此子类拥有的属性和方法是大于等于基类的。在上述场景中由
    于基类没有对应子类的函数，导致程序运行失败。所以有子类出现的地方基类未必就可以出现。
+   
+3. **覆盖或者实现父类的方法输入的参数可以放大。**  
+   ```cpp
+   class Father {
+       public:
+       virtual void DoSomething(HashMap map){
+         print("in Father class");
+       };
+   }
+   
+   class Son : public Father {
+       public:
+       void DoSomething(Map map){
+         print("in Son class");
+       };
+   }
+   
+    int main(){
+        Father f = new Father();
+        HashMap map = new HashMap();
+        f.DoSomething(map);
+        return  0;
+    }
+   ```
+   上述函数运行结果为"in Father class"。按照里氏替换原则,父类能出现的地方子类也能出现。将上述Father类改为Son类
+   ```cpp
+   int main(){
+        Son f = new Son();
+        HashMap map = new HashMap();
+        f.DoSomething(map);
+        return  0;
+    }
+   ```
+   运行结果为"in Father class"。因为子类的参数Map类型比父类HashMap类范围大,这时子类代替父类传递到调用者中,子类的方法永远都不会执行。如果想让子类执行,    那么子类必须重写父类的方法。假如子类的参数类型范围比父类的参数类型范围小即Son类的参数为HashMap类型，父类的参数为Map类型。这样就会导致子类在没有重写
+   父类的函数前提下，子类的方法被执行了,从而引起业务逻辑混乱。
+   
+4. **覆盖或者实现父类的方法输出的结果可以被缩小。**   
+   父类的一个函数的返回值是一个类型T,子类相同的函数(重写或者重载)的返回值是S。里氏替换原则就要求S必须小于或等于T,即S要么与T是同一类型，要么S是T的子类。
+   如果是重写,子类与父类的同名函数输入的参数是相同的，两个函数的返回值S小于或等于T,这是重写的要求。如果是重载,两个函数参数不同,根据里氏替换原则子类的参    数类型范围要大于父类的参数类型范围,那么子类的函数将不会被执行。
+   
+**总结**:在实际项目中,通过子类来对应不同的业务含义，使用父类作为参数，传递不同的子类完成不同的业务逻辑。   
+   
 
