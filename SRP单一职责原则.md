@@ -36,9 +36,9 @@ class Phone :public ConnectionManager ,public DataTransfer
 public:  
     Phone(){};  
     ~Phone(){};  
-    virtual void Dial(string phoneNum){};//拨电话    
-    virtual void Chat(){};
-    virtual void Hangup{};//挂电话  
+    void Dial(string phoneNum){};//拨电话    
+    void Chat(){};
+    void Hangup{};//挂电话  
 };
 ```
 通过上述方式，在一个类中实现了两个接口,把两个职责融合在一个类中。即面向接口编程，对外公布的是接口而不是实现类。
